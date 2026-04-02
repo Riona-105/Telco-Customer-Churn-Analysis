@@ -22,7 +22,7 @@ A telecom company is losing customers. Which customer segments are most at risk 
 
 3. **New customers churn the most:**
    - Tenure 0–12 months: ~47% churn rate
-   - Tenure 24+ months: ~7% churn rate
+   - Tenure 24+ months: ~14% churn rate
    - The first year is the highest-risk window for retention.
 
 4. **Fiber optic customers churn more than DSL** (~42% vs ~19%), suggesting a possible pricing or service quality issue.
