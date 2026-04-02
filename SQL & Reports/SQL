@@ -1,1 +1,61 @@
+import sqlite3
 
+# Create an in-memory SQLite database and load the dataframe into it
+conn = sqlite3.connect(':memory:')
+telco.to_sql('telco', conn, index=False, if_exists='replace')
+
+# Helper: run a SQL query and return a DataFrame
+def run_sql(query):
+    return pd.read_sql_query(query, conn)
+
+'''SQL Query 1: Churn rate by Contract Type'''
+q1 = """
+SELECT
+    Contract,
+    COUNT(*) AS total_customers,
+    SUM(Churn_Binary) AS churned,
+    ROUND(SUM(Churn_Binary) * 100.0 / COUNT(*), 1) AS churn_rate_pct
+FROM telco
+GROUP BY Contract
+ORDER BY churn_rate_pct DESC
+"""
+print("Query 1 — Churn Rate by Contract Type:")
+print(run_sql(q1))
+
+# This should match the bar chart you made in Python on Day 2 — good cross-check!
+
+
+'''SQL Query 2: Avg monthly charges for churned vs retained'''
+q2 = """
+SELECT
+    Churn,
+    ROUND(AVG(MonthlyCharges), 2) AS avg_monthly_charges,
+    ROUND(AVG(tenure), 1) AS avg_tenure_months,
+    COUNT(*) AS total_customers
+FROM telco
+GROUP BY Churn
+"""
+print("\nQuery 2 — Avg Charges & Tenure by Churn Status:")
+print(run_sql(q2))
+
+
+'''SQL Query 3: Top 3 highest-churn customer segments'''
+# Combine Contract + InternetService to find the riskiest combinations
+q3 = """
+SELECT
+  Contract,
+      InternetService,
+      COUNT(*) AS total,
+      SUM(Churn_Binary) AS churned,
+      ROUND(SUM(Churn_Binary) * 100.0 / COUNT(*), 1) AS churn_rate_pct,
+      ROW_NUMBER() OVER (ORDER BY SUM(Churn_Binary) * 100.0 / COUNT(*) DESC) AS rank
+FROM telco
+GROUP BY Contract, InternetService
+HAVING COUNT(*) > 50   -- only include segments with meaningful sample size
+ORDER BY churn_rate_pct DESC
+LIMIT 3
+"""
+print("\nQuery 3 — Top 3 Highest-Churn Customer Segments:")
+print(run_sql(q3))
+
+conn.close()
