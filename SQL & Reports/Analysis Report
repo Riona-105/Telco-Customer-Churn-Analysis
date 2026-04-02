@@ -1,0 +1,40 @@
+**BUSINESS QUESTION:
+Which customers are most at risk of churning, and what should
+the business do about it?**
+
+**KEY FINDINGS:**
+1. Overall churn rate is ~26.5% — roughly 1 in 4 customers leaves.
+
+2. Contract type is the strongest predictor:
+   - Month-to-month: ~43% churn rate
+   - One year:       ~11% churn rate
+   - Two year:        ~3% churn rate
+   
+   → Customers without long-term commitment are highly at risk.
+
+3. New customers churn the most:
+   - Tenure 0–12 months: ~47% churn rate
+   - Tenure 24+ months: ~14% churn rate
+   
+   → The first year is the most critical retention window.
+
+4. Fiber optic internet customers churn more than DSL (~42% vs ~19%).
+
+
+   → May indicate a pricing or service quality issue for fiber.
+
+6. Electronic check users have the highest churn among payment methods.
+
+
+   → Could signal a less engaged or committed customer segment.
+
+**RECOMMENDATIONS:**
+1. Prioritise Month-to-month + new customer (0–12m) segment for
+   retention campaigns — offer incentives to upgrade to annual contracts.
+
+2. Investigate why Fiber Optic customers churn more — survey this segment
+   to understand if it's pricing, reliability, or competition.
+
+3. Set up an early warning system: flag customers with
+   month-to-month contract + tenure < 12m + monthly charges > $65
+   as high-risk for proactive outreach.
